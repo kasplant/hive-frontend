@@ -16,7 +16,8 @@
     "@lottiefiles/dotlottie-react": "^0.17.8",
     "classnames": "^2.5.1",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.10.1"
   },
   "devDependencies": {
     "@capacitor/cli": "^7.4.4",
