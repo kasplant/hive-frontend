@@ -20,3 +20,21 @@
   font-weight: 300;
   margin: 0;
 }
+.Header-footer-primarybutton {
+  background-color: var(--primary);
+  border-radius: 10px;
+  color: var(--primary-text);
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  border: none;
+  padding: 12px 34px;
+}
+
+.Header-footer-secondarybutton {
+  background-color: var(--secondary);
+  border-radius: 10px;
+  color: var(--primary-text);
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  border: none;
+  padding: 12px 23px;
+
+}

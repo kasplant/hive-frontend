@@ -8,6 +8,8 @@ export const Header = ({ title, description }: { title: string; description: str
     <div className={getClassName()}>
         <h1 className={getClassName('title')}>{title}</h1>
         <p className={getClassName('description')}>{description}</p>
+        <button className={getClassName('back-button')} onClick={() => window.history.back()}> Terug
+        </button>
     </div>
   )
 }
