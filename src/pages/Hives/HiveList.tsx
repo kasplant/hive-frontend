@@ -21,6 +21,10 @@ function HiveList() {
             name={hive.name}
             subname="Aangemaakt op"
             date={new Date(hive.created_at).toLocaleString()}
+            temperature={hive.temperature}
+            humidity={hive.humidity}
+            created_at={hive.created_at}
+            updated_at={hive.updated_at}
             buttons={[
               { type: "primary", text: "Bekijk kast", href: `/hives/${hive.id}` },
               { type: "secondary", text: "Nieuwe inspectie", href: `/hives/${hive.id}/inspections/new` }
