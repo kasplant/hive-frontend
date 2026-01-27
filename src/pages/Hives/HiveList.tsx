@@ -33,7 +33,6 @@ function HiveList() {
 
     const json = await res.json()
 
-    // API returns: { message, id }
     setHives(prev => [
       ...prev,
       {
@@ -65,25 +64,31 @@ function HiveList() {
         )}
 
         {showForm && (
-          <div className="CreateHiveForm">
+          <div className={getClassName('CreateHiveForm')}>
             <input
+              className={getClassName('CreateHiveInput')}
               type="text"
               placeholder="Naam van de bijenkast"
               value={name}
               onChange={e => setName(e.target.value)}
             />
 
-            <button
-              className={getClassName('NewHiveButton')}
-              onClick={createHive}
-              disabled={!name}
-            >
-              Bevestigen
-            </button>
+            <div className={getClassName('CreateHiveActions')}>
+              <button
+                className={getClassName('NewHiveButton')}
+                onClick={createHive}
+                disabled={!name}
+              >
+                Bevestigen
+              </button>
 
-            <button onClick={() => setShowForm(false)}>
-              Annuleren
-            </button>
+              <button
+                className={getClassName('SecondaryButton')}
+                onClick={() => setShowForm(false)}
+              >
+                Annuleren
+              </button>
+            </div>
           </div>
         )}
 
