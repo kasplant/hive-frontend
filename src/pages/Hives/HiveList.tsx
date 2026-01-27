@@ -15,6 +15,45 @@ function HiveList() {
     <div className="App">
       <Header title="Bijen horen erbij" description="Kies jouw bijenkast" />
       <div className="Body">
+        {/* Create hive UI */}
+        {!showForm && (
+          <button
+          className={getClassName('NewHiveButton')}
+          onClick={() => setShowForm(true)}>
+            Nieuwe bijenkast
+          </button>
+        )}
+
+        {showForm && (
+          <div className={getClassName('CreateHiveForm')}>
+            <input
+              className={getClassName('CreateHiveInput')}
+              type="text"
+              placeholder="Naam van de bijenkast"
+              value={name}
+              onChange={e => setName(e.target.value)}
+            />
+
+          <div className={getClassName('CreateHiveActions')}>
+              <button
+                className={getClassName('NewHiveButton')}
+                onClick={createHive}
+                disabled={!name}
+              >
+                Bevestigen
+              </button>
+
+              <button
+                className={getClassName('SecondaryButton')}
+                onClick={() => setShowForm(false)}
+              >
+                Annuleren
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Current hive list */}
         {hives.map(hive => (
           <Card
             key={hive.id}
