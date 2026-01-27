@@ -1,18 +1,18 @@
 import styles from './styles.module.css'
 import getClassNameFactory from '../../lib/get-class-name-factory'
-import Demo from './collapsible'
+// import Demo from './collapsible'
 const getClassName = getClassNameFactory('Card', styles)
 
 
 export const Card = ({
   name,
-  subname,
+  // subname,
   temperature,
   humidity,
   created_at,
   updated_at,
   buttons,
-  showCollapsible = true
+
 }: {
   name: string
   subname?: string
