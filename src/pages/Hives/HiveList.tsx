@@ -1,15 +1,54 @@
 import { Card, Header } from "../../components"
 import { useEffect, useState } from "react"
 import type { Hive, ApiResponse } from "../../types/api"
+import styles from "./styles.module.css"
+import getClassNameFactory from "../../lib/get-class-name-factory"
+
+const getClassName = getClassNameFactory("Hives", styles)
 
 function HiveList() {
   const [hives, setHives] = useState<Hive[]>([])
+  const [showForm, setShowForm] = useState(false)
+  const [name, setName] = useState("")
 
   useEffect(() => {
     fetch("/api/hives")
       .then(res => res.json())
       .then((json: ApiResponse<Hive[]>) => setHives(json.data))
   }, [])
+
+  const createHive = async () => {
+    const formData = new FormData()
+    formData.append("name", name)
+    formData.append("user_id", "1")   // required by API
+    formData.append("queen_id", "1")  // required by API
+
+    const res = await fetch("/api/hive", {
+      method: "POST",
+      body: formData,
+    })
+
+    if (!res.ok) {
+      throw new Error("Failed to create hive")
+    }
+
+    const json = await res.json()
+
+    setHives(prev => [
+      ...prev,
+      {
+        id: json.id,
+        name,
+        temperature: null,
+        humidity: null,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      } as Hive,
+    ])
+
+    setName("")
+    setShowForm(false)
+  }
 
   return (
     <div className="App">
@@ -18,8 +57,9 @@ function HiveList() {
         {/* Create hive UI */}
         {!showForm && (
           <button
-          className={getClassName('NewHiveButton')}
-          onClick={() => setShowForm(true)}>
+            className={getClassName('NewHiveButton')}
+            onClick={() => setShowForm(true)}
+          >
             Nieuwe bijenkast
           </button>
         )}
@@ -34,7 +74,7 @@ function HiveList() {
               onChange={e => setName(e.target.value)}
             />
 
-          <div className={getClassName('CreateHiveActions')}>
+            <div className={getClassName('CreateHiveActions')}>
               <button
                 className={getClassName('NewHiveButton')}
                 onClick={createHive}
@@ -59,7 +99,6 @@ function HiveList() {
             key={hive.id}
             name={hive.name}
             subname="Aangemaakt op"
-            // date={new Date(hive.created_at).toLocaleString()}
             temperature={hive.temperature}
             humidity={hive.humidity}
             created_at={hive.created_at}
