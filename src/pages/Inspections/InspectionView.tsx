@@ -34,7 +34,7 @@ const SECTIONS: {
       title: "Koningin gezien",
       disabled: true,  
       fields: [
-        { type: "text", label: "" },
+        { type: "boolean", label: "gezien" },
       ]
     },
     {
