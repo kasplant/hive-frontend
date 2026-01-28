@@ -39,7 +39,40 @@ export const Accordion = ({
           {fields.map((field, index) => (
             <div key={index} className={getClassName("field")}>
               <p>{field.label}</p>
-              <input type={field.type} disabled={disabled} />
+              {(() => {
+                switch (field.type) {
+                  case "text":
+                  case "date":
+                    return (
+                      <input
+                        type={field.type}
+                        disabled={disabled}
+                        value={field.value ?? ""}
+                        readOnly
+                      />
+                    )
+
+                  case "number":
+                    return (
+                      <input
+                        type="number"
+                        disabled={disabled}
+                        value={field.value ?? 0}
+                        readOnly
+                      />
+                    )
+
+                  case "boolean":
+                    return (
+                      <input
+                        type="checkbox"
+                        checked={field.value ?? false}
+                        disabled
+                        readOnly
+                      />
+                    )
+                }
+              })()}
             </div>
           ))}
         </div>
