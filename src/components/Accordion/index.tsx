@@ -3,6 +3,8 @@ import styles from "./styles.module.css"
 import getClassNameFactory from "../../lib/get-class-name-factory"
 import { ChevronUp } from "lucide-react"
 import type { Field } from "../../types/form"
+import type { Inspection } from "../../pages/Inspections/InspectionView" // type-only import
+
 const getClassName = getClassNameFactory("Accordion", styles)
 
 type AccordionProps = {
@@ -10,13 +12,15 @@ type AccordionProps = {
   fields: Field[]
   disabled: boolean
   defaultOpen?: boolean
+  inspection?: Inspection | null
 }
 
 export const Accordion = ({
   title,
   disabled,
   fields,
-  defaultOpen = false
+  defaultOpen = false,
+  inspection = null
 }: AccordionProps) => {
   const [open, setOpen] = useState<boolean>(defaultOpen)
 
