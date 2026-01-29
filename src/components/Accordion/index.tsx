@@ -40,29 +40,45 @@ export const Accordion = ({
 
       {open && (
         <div className={getClassName("fields")}>
-          {fields.map((field, index) => {
-            const value = inspection ? inspection[field.name as keyof Inspection] : ""
+          {fields.map((field, index) => (
+            <div key={index} className={getClassName("field")}>
+              <p>{field.label}</p>
+              {(() => {
+                switch (field.type) {
+                  case "text":
+                  case "date":
+                    return (
+                      <input
+                        type={field.type}
+                        disabled={disabled}
+                        value={field.value ?? ""}
+                        readOnly
+                      />
+                    )
 
-            return (
-              <div key={index} className={getClassName("field")}>
-                <p>{field.label}</p>
+                  case "number":
+                    return (
+                      <input
+                        type="number"
+                        disabled={disabled}
+                        value={field.value ?? 0}
+                        readOnly
+                      />
+                    )
 
-                {field.type === "checkbox" ? (
-                  <input
-                    type="checkbox"
-                    disabled={disabled}
-                    checked={Boolean(value)}
-                  />
-                ) : (
-                  <input
-                    type={field.type}
-                    disabled={disabled}
-                    value={value as string | number}
-                  />
-                )}
-              </div>
-            )
-          })}
+                  case "boolean":
+                    return (
+                      <input
+                        type="checkbox"
+                        checked={field.value ?? false}
+                        disabled
+                        readOnly
+                      />
+                    )
+                }
+              })()}
+            </div>
+          ))}
         </div>
       )}
     </div>

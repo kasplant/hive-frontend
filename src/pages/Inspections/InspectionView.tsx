@@ -29,84 +29,84 @@ const SECTIONS: {
   disabled: boolean
   fields: Field<Inspection>[]
 }[] = [
-  {
-    title: "Overige notities",
-    disabled: true,
-    fields: [
-      { type: "text", label: "Notities", name: "id" } // voorlopig dummy, kan later aangepast
-    ]
-  },
-  {
-    title: "Gedrag volk",
-    disabled: true,
-    fields: [
-      { type: "text", label: "Gedrag", name: "behaviour" }
-    ]
-  },
-  {
-    title: "Koningin gezien",
-    disabled: true,
-    fields: [
-      { type: "checkbox", label: "Koningin gezien", name: "queen_seen"}
-    ]
-  },
-  {
-    title: "Aantal bakken",
-    disabled: true,
-    fields: [
-      { type: "number", label: "Aantal", name: "honeycomb_count" }
-    ]
-  },
-  {
-    title: "Ramen bezet",
-    disabled: true,
-    fields: [
-      { type: "number", label: "Aantal", name: "windows_occupied" }
-    ]
-  },
-  {
-    title: "BRIAS",
-    disabled: true,
-    fields: [
-      { type: "text", label: "j/n", name: "BRIAS" }
-    ]
-  },
-  {
-    title: "BRIAS gezond",
-    disabled: true,
-    fields: [
-      { type: "text", label: "j/n", name: "BRIAS_healthy" }
-    ]
-  },
-  {
-    title: "Belegde zwermcellen",
-    disabled: true,
-    fields: [
-      { type: "number", label: "Aantal", name: "invested_swarm_cells" }
-    ]
-  },
-  {
-    title: "Voorraad voer",
-    disabled: true,
-    fields: [
-      { type: "number", label: "Gram", name: "stock_food" }
-    ]
-  },
-  {
-    title: "Stuifmeel",
-    disabled: true,
-    fields: [
-      { type: "number", label: "Gram", name: "pollen" }
-    ]
-  },
-  {
-    title: "Mijtval",
-    disabled: true,
-    fields: [
-      { type: "number", label: "Aantal", name: "mite_fall" }
-    ]
-  }
-]
+    {
+      title: "Overige notities",
+      disabled: true,
+      fields: [
+        { type: "text", label: "" },
+      ]
+    },
+    {
+      title: "Gedrag volk",
+      disabled: true,
+      fields: [
+        { type: "text", label: "Gedrag" },
+      ]
+    },
+    {
+      title: "Koningin gezien",
+      disabled: true,  
+      fields: [
+        { type: "boolean", label: "gezien" },
+      ]
+    },
+    {
+      title: "Aantal bakken",
+      disabled: true,
+      fields: [
+        { type: "number", label: "Aantal" },
+      ]
+    },
+    {
+      title: "Ramen bezet",
+      disabled: true,
+      fields: [
+        { type: "number", label: "Aantal" },
+      ]
+    },
+    {
+      title: "BRIAS",
+      disabled: true,
+      fields: [
+        { type: "text", label: "j/n" },
+      ]
+    },
+    {
+      title: "BRIAS gezond",
+      disabled: true,
+      fields: [
+        { type: "text", label: "j/n" },
+      ]
+    },
+    {
+      title: "Belegde zwermcellen",
+      disabled: true,
+      fields: [
+        { type: "text", label: "j/n" },
+      ]
+    },
+    {
+      title: "Voorraad voer",
+      disabled: true,
+      fields: [
+        { type: "number", label: "" },
+      ]
+    },
+    {
+      title: "Stuifmeel",
+      disabled: true,
+      fields: [
+        { type: "text", label: "j/n" },
+      ]
+    },
+    {
+      title: "Mijtval",
+      disabled: true,
+      fields: [
+        { type: "number", label: "aantal" },
+      ]
+    }
+  ]
 
 function InspectionView() {
   const { inspectionId } = useParams()
