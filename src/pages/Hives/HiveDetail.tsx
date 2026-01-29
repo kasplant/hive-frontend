@@ -14,17 +14,17 @@ function HiveDetail() {
   const { hiveId } = useParams()
   const [inspections, setInspections] = useState<Inspection[]>([])
 
+
 useEffect(() => {
   if (hiveId) {
     fetch(`/api/hives/${hiveId}/inspections`)
       .then(res => res.json())
       .then((json: ApiResponse<Inspection[]>) => {
-        // newest first
-        const sorted = [...json.data].sort(
-          (a, b) => b.id - a.id
-        )
+        const filtered = json.data
+          .filter(i => i.hive_id === Number(hiveId))
+          .sort((a, b) => b.id - a.id)
 
-        setInspections(sorted)
+        setInspections(filtered)
       })
   }
 }, [hiveId])
