@@ -21,8 +21,8 @@ useEffect(() => {
       .then(res => res.json())
       .then((json: ApiResponse<Inspection[]>) => {
         const filtered = json.data
-          .filter(i => i.hive_id === Number(hiveId))
-          .sort((a, b) => b.id - a.id)
+          .filter(i => i.hive_id === Number(hiveId))  // Only show inspections relevant to the selected hive
+          .sort((a, b) => b.id - a.id)                // Sort by id descending, to show the latest inspection first
 
         setInspections(filtered)
       })

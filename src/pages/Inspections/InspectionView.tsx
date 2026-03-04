@@ -4,22 +4,9 @@ import { Header, Accordion } from "../../components"
 import type { Field } from "../../types/form"
 import type { ApiResponse } from "../../types/api"
 
-export type Inspection = {
+type Inspection = {
   id: number
-  user_id: number
   hive_id: number
-  queen_id: number
-  date: string
-  behaviour: string
-  queen_seen: number
-  honeycomb_count: number
-  windows_occupied: number
-  BRIAS: string
-  BRIAS_healthy: string
-  invested_swarm_cells: number
-  stock_food: number
-  pollen: number
-  mite_fall: number
   created_at: string
   updated_at: string
 }
@@ -27,7 +14,7 @@ export type Inspection = {
 const SECTIONS: {
   title: string
   disabled: boolean
-  fields: Field<Inspection>[]
+  fields: Field[]
 }[] = [
     {
       title: "Overige notities",
@@ -110,19 +97,15 @@ const SECTIONS: {
 
 function InspectionView() {
   const { inspectionId } = useParams()
-  const [inspections, setInspections] = useState<Inspection[]>([])
+  const [inspection, setInspection] = useState<Inspection | null>(null)
 
   useEffect(() => {
-    fetch("/api/inspections")
-      .then(res => res.json())
-      .then((json: ApiResponse<Inspection[]>) => {
-        setInspections(json.data)
-      })
-  }, [])
-
-  const inspection = inspections.find(
-    i => i.id === Number(inspectionId)
-  ) ?? null
+    if (inspectionId) {
+      fetch(`/api/inspections/${inspectionId}`)
+        .then(res => res.json())
+        .then((json: ApiResponse<Inspection>) => setInspection(json.data))
+    }
+  }, [inspectionId])
 
   return (
     <div className="App">
@@ -138,7 +121,6 @@ function InspectionView() {
             title={title}
             disabled={disabled}
             fields={fields}
-            inspection={inspection}
           />
         ))}
       </div>
