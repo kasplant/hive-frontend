@@ -20,7 +20,7 @@ type Inspection = {
   BRIAS_healthy?: string
   invested_swarm_cells?: string
   stock_food?: number
-  pollen?: string
+  pollen?: number
   mite_fall?: number
   created_at?: string
   updated_at?: string
@@ -40,9 +40,15 @@ function InspectionForm() {
     BRIAS_healthy: "",
     invested_swarm_cells: "",
     stock_food: 0,
-    pollen: "",
+    pollen: 0,
     mite_fall: 0,
-    date: new Date().toISOString().slice(0, 10),
+    date: (() => {
+      const today = new Date()
+      const year = today.getFullYear()
+      const month = String(today.getMonth() + 1).padStart(2, '0')
+      const day = String(today.getDate()).padStart(2, '0')
+      return `${year}-${month}-${day}`
+    })(),
   })
 
   const [loading, setLoading] = useState(false)
@@ -64,6 +70,10 @@ function InspectionForm() {
       errors.date = "Datum is verplicht"
     }
 
+    if (!inspection.behaviour?.trim()) {
+      errors.behaviour = "Gedrag is verplicht"
+    }
+
     if (inspection.honeycomb_count! < 0) {
       errors.honeycomb_count = "Mag niet negatief zijn"
     }
@@ -74,6 +84,10 @@ function InspectionForm() {
 
     if (inspection.stock_food! < 0) {
       errors.stock_food = "Mag niet negatief zijn"
+    }
+
+    if (inspection.pollen! < 0) {
+      errors.pollen = "Mag niet negatief zijn"
     }
 
     if (inspection.mite_fall! < 0) {
@@ -110,7 +124,7 @@ function InspectionForm() {
     formData.append("BRIAS_healthy", inspection.BRIAS_healthy || "")
     formData.append("invested_swarm_cells", inspection.invested_swarm_cells || "")
     formData.append("stock_food", inspection.stock_food!.toString())
-    formData.append("pollen", inspection.pollen || "")
+    formData.append("pollen", inspection.pollen!.toString())
     formData.append("mite_fall", inspection.mite_fall!.toString())
 
     try {
@@ -155,7 +169,7 @@ function InspectionForm() {
     { label: "BRIAS gezond", type: "text", field: "BRIAS_healthy" },
     { label: "Belegde zwermcellen", type: "text", field: "invested_swarm_cells" },
     { label: "Voorraad voer", type: "number", field: "stock_food" },
-    { label: "Stuifmeel", type: "text", field: "pollen" },
+    { label: "Stuifmeel", type: "number", field: "pollen" },
     { label: "Mijtval", type: "number", field: "mite_fall" },
   ]
 
