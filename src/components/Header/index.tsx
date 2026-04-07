@@ -16,6 +16,11 @@ export const Header = ({ title, description }: { title: string; description: str
       return
     }
 
+    if (pathParts[0] === 'hives' && pathParts[1] && pathParts.length === 2) {
+      navigate('/hives')
+      return
+    }
+
     window.history.back()
   }
   
