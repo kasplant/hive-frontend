@@ -151,7 +151,7 @@ function InspectionForm() {
         throw new Error(json.message || "Failed to create inspection")
       }
 
-      navigate(`/hives/${hiveId}/inspections/${json.data.id}`)
+      navigate(`/hives/${hiveId}`)
     } catch (err: any) {
       setError(err.message || "Unknown error")
     } finally {
