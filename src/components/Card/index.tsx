@@ -9,6 +9,7 @@ export const Card = ({
   // subname,
   temperature,
   humidity,
+  weight,
   created_at,
   updated_at,
   buttons,
@@ -18,6 +19,7 @@ export const Card = ({
   subname?: string
   temperature?: number | null
   humidity?: number | null
+  weight?: number | null
   created_at?: string
   updated_at?: string
   buttons?: {
@@ -46,6 +48,9 @@ export const Card = ({
         </p>
         <p>
           <strong>Vochtigheid:</strong>&nbsp;{humidity !== null ? humidity : "—"}%
+        </p>
+        <p>
+          <strong>Gewicht:</strong>&nbsp;{weight !== null ? weight : "—"} kg
         </p>
       </div>
 

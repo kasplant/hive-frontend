@@ -2,6 +2,7 @@ export type Hive = {
   id: number
   user_id: number
   name: string
+  weight: number | null
   temperature: number | null
   humidity: number | null
   queen_id: number | null

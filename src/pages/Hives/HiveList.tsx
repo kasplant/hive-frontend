@@ -100,6 +100,7 @@ function HiveList() {
             subname="Aangemaakt op"
             temperature={hive.temperature}
             humidity={hive.humidity}
+            weight={hive.weight}
             created_at={hive.created_at}
             updated_at={hive.updated_at}
             buttons={[

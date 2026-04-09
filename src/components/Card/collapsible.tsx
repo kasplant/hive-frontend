@@ -5,12 +5,14 @@ import { ChevronUp } from "lucide-react";
 type Props = {
   temperature?: number | null;
   humidity?: number | null;
+  weight?: number | null;
   defaultOpen?: boolean;
 };
 
 export default function Collapsible({
   temperature,
   humidity,
+  weight,
   defaultOpen = false
 }: Props) {
   const [open, setOpen] = useState<boolean>(defaultOpen);
@@ -41,6 +43,11 @@ export default function Collapsible({
           <div className={styles.field}>
             <p className={styles.label}>Vochtigheid</p>
             <p className={styles.value}>{formatNum(humidity, " %")}</p>
+          </div>
+          
+          <div className={styles.field}>
+            <p className={styles.label}>Gewicht</p>
+            <p className={styles.value}>{formatNum(weight, " kg")}</p>
           </div>
         </div>
       )}
